@@ -1,14 +1,43 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
 
 func main() {
-	data := []int{1, 2, 3, 4, 5, 8, 16, 20, 32, 84, 50, 24, 32, 68, 128, 256}
+	data := []int{}
 
-	fmt.Println(isTwoSquare(data))
+	// fmt.Println(isArrayTwoSquare(data))
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Println("Is your number is Square by 2 (\"exit\" for stop)")
+	fmt.Println("---------------------")
+	fmt.Print("integer : ")
+
+	for scanner.Scan() {
+		text := scanner.Text()
+		if text == "exit" {
+			break
+		}
+
+		value, err := strconv.Atoi(text)
+		if err != nil {
+			fmt.Printf("%s not integer\n", text)
+			fmt.Print("integer : ")
+			continue
+		}
+
+		data = append(data, value)
+		fmt.Println(isTwoSquare(value))
+		fmt.Print("integer : ")
+	}
+
+	fmt.Println(isArrayTwoSquare(data))
 }
 
-func isTwoSquare(input []int) []bool {
+func isArrayTwoSquare(input []int) []bool {
 	var results []bool
 
 	for _, i := range input {
@@ -34,4 +63,23 @@ func isTwoSquare(input []int) []bool {
 	}
 
 	return results
+}
+
+func isTwoSquare(input int) bool {
+
+	if input == 1 {
+		return false
+	}
+
+	for {
+		if input == 1 {
+			return true
+		} else if input%2 != 0 {
+			return false
+		} else {
+			input = input / 2
+			continue
+		}
+
+	}
 }
