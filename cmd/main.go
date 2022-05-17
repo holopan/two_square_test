@@ -42,7 +42,7 @@ func isArrayTwoSquare(input []int) []bool {
 
 	for _, i := range input {
 
-		if i == 1 {
+		if i == 1 || i == 0 {
 			results = append(results, false)
 			continue
 		}
@@ -67,7 +67,7 @@ func isArrayTwoSquare(input []int) []bool {
 
 func isTwoSquare(input int) bool {
 
-	if input == 1 {
+	if input == 1 || input == 0 {
 		return false
 	}
 
